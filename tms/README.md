@@ -27,9 +27,8 @@ Users can sign up, log in, post tweets, edit them, and delete them with ease —
 
 ## 🖥️ Screenshots
 
-> Add screenshots of your UI if possible: login page, dashboard, tweet page etc.
+<img width="1470" alt="Screenshot 2025-06-04 at 10 57 23 PM" src="https://github.com/user-attachments/assets/4382d73d-6c78-469a-9878-df1bb6060777" />
 
----
 
 ## 🚀 Getting Started
 
