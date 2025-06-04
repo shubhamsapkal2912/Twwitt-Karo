@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Twwitt Karo{% endblock %}</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600;700&family=Lato:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Existing body styling */
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+
+
+
+
+    /* Navbar custom styles */
+    .navbar-custom {
+      background: linear-gradient(135deg, #00bfff, #ff69b4);
+    }
+
+    /* Button styles */
+    .btn-gradient {
+      background: linear-gradient(135deg, #00bfff, #ff69b4);
+      border: 1px solid transparent;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #ff69b4, #00bfff);
+      transform: translateY(-2px);
+    }
+
+    .btn-gradient:active {
+      transform: translateY(1px);
+    }
+
+    /* Media query for responsive design */
+    @media (max-width: 991px) {
+      .navbar-nav {
+        text-align: center;
+        width: 100%;
+      }
+      .navbar-nav .nav-item {
+        width: 100%;
+      }
+      .navbar-nav .nav-link {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Twwitt Karo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'tweet_list' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tweet_list' %}">Tweets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <!-- Authentication Buttons -->
+        {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">Logout</button>
+        </form>
+        {% else %}
+        <div class="ms-3">
+          <a href="{% url 'login' %}" class="btn btn-gradient">Login</a>
+          <a href="{% url 'register' %}" class="btn btn-gradient ms-2">Register</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
